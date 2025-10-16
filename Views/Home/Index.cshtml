@@ -15,174 +15,208 @@
     <style>
         /* Page (full viewport, no scroll) */
         html, body {
-          height: 100%;
-          margin: 0;
+            height: 100%;
+            margin: 0;
         }
+
         body {
-          font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-          overflow: hidden; /* no scrolling, page fits viewport */
-          background-image: url('/images/Background.png'); /* change path if needed */
-          background-size: cover;
-          background-position: center;
-          background-repeat: no-repeat;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+            overflow: hidden;
+            background-image: url('/images/Background.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
         }
 
         /* Centered rounded backdrop panel */
         .hero-panel {
-          box-sizing: border-box;
-          width: calc(100% - 120px);
-          max-width: 1200px;
-          height: calc(100% - 120px);
-          margin: 60px auto;
-          border-radius: 20px;
-          overflow: hidden;
-          display: flex;
-          align-items: stretch;
-          background-image: url('/images/Backdrop.png'); /* semitransparent rectangle graphic */
-          background-size: cover;
-          background-position: center;
-          box-shadow: 0 6px 30px rgba(0,0,0,0.35);
+            box-sizing: border-box;
+            width: calc(100% - 120px);
+            max-width: 1200px;
+            height: calc(100% - 120px);
+            margin: 60px auto;
+            border-radius: 20px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-image: url('/images/Backdrop.png');
+            background-size: cover;
+            background-position: center;
+            box-shadow: 0 6px 30px rgba(0,0,0,0.35);
         }
 
         /* content columns */
         .left-col {
-          flex: 0 0 44%;
-          padding: 56px 48px;
-          display: flex;
-          flex-direction: column;
-          gap: 20px;
-          justify-content: center;
+            flex: 0 0 45%;
+            padding: 56px 48px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        /* align download button and qr together */
+        .qr-section {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 12px;
+            margin-top: 24px;
         }
 
         .right-col {
-          flex: 1 1 auto;
-          padding: 28px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 28px;
         }
 
         /* Logo */
         .ns-logo {
-          width: 120px;
-          height: auto;
-          object-fit: contain;
+            width: 120px;
+            height: auto;
+            object-fit: contain;
         }
 
         /* Headings & text */
         .brand-title {
-          margin: 6px 0 0 0;
-          font-size: 44px;
-          line-height: 1;
-          color: #00A4A4; /* teal-ish for "Next" */
-          font-weight: 700;
-        }
-        /* second color for the orange segment */
-        .brand-title .accent {
-          color: #F58220;
+            margin-top: 6px;
+            font-size: 44px;
+            line-height: 1;
+            color: #00A4A4;
+            font-weight: 700;
         }
 
+            .brand-title .accent {
+                color: #F58220;
+            }
+
         .tagline {
-          margin-top: 6px;
-          color: #333;
-          font-size: 16px;
-          font-weight: 500;
+            margin-top: 8px;
+            color: #333;
+            font-size: 16px;
+            font-weight: 500;
         }
 
         /* QR block */
         .qr-wrap {
-          width: 220px;
-          height: 220px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          background: rgba(255,255,255,0.95);
-          border-radius: 6px;
-          padding: 12px;
-          box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-          margin-top: 18px;
+            width: 220px;
+            height: 220px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255,255,255,0.95);
+            border-radius: 6px;
+            padding: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
         }
-        .qr-wrap img {
-          max-width: 100%;
-          max-height: 100%;
-          display: block;
-        }
+
+            .qr-wrap img {
+                max-width: 100%;
+                max-height: 100%;
+                display: block;
+            }
 
         .small-note {
-          font-size: 12px;
-          color: rgba(0,0,0,0.6);
-          margin-top: 12px;
-          max-width: 320px;
+            font-size: 12px;
+            color: rgba(0,0,0,0.6);
+            margin-top: 12px;
+            max-width: 320px;
+            font-weight:bold;
         }
 
-        /* Download button (orange pill) */
+        /* Download button */
         .dl-btn {
-          display: inline-block;
-          margin-top: 18px;
-          background: #f58220;
-          color: white;
-          border-radius: 30px;
-          padding: 12px 28px;
-          font-weight: 600;
-          text-decoration: none;
-          box-shadow: 0 6px 18px rgba(245,130,32,0.18);
+            background: #f58220;
+            color: white;
+            border-radius: 30px;
+            padding: 12px 28px;
+            font-weight: 600;
+            text-decoration: none;
+            box-shadow: 0 6px 18px rgba(245,130,32,0.18);
+            transition: background 0.2s ease;
         }
+
+            .dl-btn:hover {
+                background: #e46e0d;
+            }
 
         /* Right product image container */
         .product-image {
-          max-width: 680px;
-          width: 100%;
-          height: auto;
-          display: block;
-          object-fit: contain;
-          transform: translateX(8px);
+            max-width: 620px;
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            transform: translateX(8px);
         }
 
-        /* Responsive rules - mobile stack in requested order */
-        @media (max-width: 900px) {
-          .hero-panel {
+        /* Responsive rules */
+        @@media (max-width: 900px) {
+            .hero-panel
+
+        {
             flex-direction: column;
             width: calc(100% - 40px);
-            height: calc(100% - 40px);
+            height: auto;
             margin: 20px auto;
+            padding: 20px;
             border-radius: 16px;
-            padding: 16px 12px;
-          }
-          .left-col {
-            order: 1;
-            width: 100%;
-            flex: 0 0 auto;
-            padding: 18px;
+        }
+
+        .left-col {
             align-items: center;
             text-align: center;
-          }
-          .right-col {
-            order: 2;
+            padding: 18px;
+        }
+
+        .qr-section {
+            align-items: center;
+        }
+
+        .right-col {
             padding: 12px;
-          }
-
-          .ns-logo { width: 90px; }
-
-          .brand-title { font-size: 34px; }
-
-          .qr-wrap { width: 200px; height: 200px; margin: 12px 0; }
-
-          .left-col .tagline,
-          .left-col .small-note { max-width: 100%; }
-
-          /* product image placed after download button (per requested mobile order) */
-          .product-image { max-width: 420px; margin-top: 18px; }
         }
 
-        @media (max-width: 420px) {
-          .brand-title { font-size: 28px; }
-          .qr-wrap { width: 170px; height: 170px; }
-          .dl-btn { padding: 10px 22px; font-size: 15px; }
+        .ns-logo {
+            width: 90px;
         }
 
-        /* Accessibility / focus */
-        .dl-btn:focus, .dl-btn:hover { text-decoration: none; }
+        .brand-title {
+            font-size: 34px;
+        }
 
+        .qr-wrap {
+            width: 200px;
+            height: 200px;
+        }
+
+        .product-image {
+            max-width: 420px;
+            margin-top: 18px;
+        }
+
+        }
+
+        @@media (max-width: 420px) {
+            .brand-title
+
+        {
+            font-size: 28px;
+        }
+
+        .qr-wrap {
+            width: 170px;
+            height: 170px;
+        }
+
+        .dl-btn {
+            padding: 10px 22px;
+            font-size: 15px;
+        }
+
+        }
     </style>
 </head>
 <body>
@@ -199,19 +233,19 @@
 
                 <div class="tagline">Your smart companion for BGC Bus commuting.</div>
 
-                <div class="qr-wrap" aria-hidden="false">
-                    <img src="/images/POSTSURVEY.png" alt="POSTSURVEY" />
+                <div class="qr-section">
+                    <div class="qr-wrap">
+                        <img src="/images/POSTSURVEY.png" alt="POSTSURVEY" />
+                    </div>
+                    <div class="small-note">
+                        Please let us hear your feedback after using our app. Thank you.
+                    </div>
+                    <a class="dl-btn" href="@Url.Action("DownloadApk", "Home")" role="button" aria-label="Download NextStop">
+                        Download APK
+                    </a>
                 </div>
-
-                <div class="small-note">
-                    Please let us hear your feedback after using our app. Thank you.
-                </div>
-
-                <a class="dl-btn" href="#" role="button" aria-label="Download NextStop">
-                    <!-- INSERT DOWNLOAD LINK HERE -> href="/your/link" -->
-                    Download
-                </a>
             </div>
+
 
             <!-- RIGHT column (product image) -->
             <div class="right-col">

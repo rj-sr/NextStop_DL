@@ -1,5 +1,5 @@
 var builder = WebApplication.CreateBuilder(args);
-
+var phTimeZone = TimeZoneInfo.FindSystemTimeZoneById("Asia/Manila");
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
