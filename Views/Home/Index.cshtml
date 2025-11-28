@@ -13,215 +13,193 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
-        /* Page (full viewport, no scroll) */
         html, body {
             height: 100%;
             margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            overflow: hidden;
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-            overflow: hidden;
-            background-image: url('/images/Background.png');
+            background-image: url("/images/Background.png");
             background-size: cover;
             background-position: center;
-            background-repeat: no-repeat;
         }
 
-        /* Centered rounded backdrop panel */
         .hero-panel {
-            box-sizing: border-box;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
             width: calc(100% - 120px);
-            max-width: 1200px;
+            max-width: 1400px;
             height: calc(100% - 120px);
-            margin: 60px auto;
-            border-radius: 20px;
+            border-radius: 25px;
             overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background-image: url('/images/Backdrop.png');
+            box-shadow: 0 8px 45px rgba(0,0,0,0.35);
+        }
+
+        .backdrop {
+            position: absolute;
+            inset: 0;
+            background-image: url("/images/Backdrop.png");
             background-size: cover;
             background-position: center;
-            box-shadow: 0 6px 30px rgba(0,0,0,0.35);
+            opacity: 0.9;
         }
 
-        /* content columns */
+        .content {
+            position: relative;
+            z-index: 3;
+            height: 100%;
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 40px;
+            gap: 0;
+        }
+
+        /* LEFT COLUMN */
         .left-col {
-            flex: 0 0 45%;
-            padding: 56px 48px;
+            flex: 0 0 42%;
+            text-align: center;
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            align-items: flex-start;
+            align-items: center;
+            gap: 14px;
         }
 
-        /* align download button and qr together */
-        .qr-section {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 12px;
-            margin-top: 24px;
+        .ns-logo {
+            width: 350px;
+            height: auto;
+            object-fit: contain;
         }
 
+        .tagline {
+            color: #3c3c3c;
+            font-size: 17px;
+            font-weight: 600;
+        }
+
+        .dl-btn {
+            background: #FA7003;
+            color: #fff;
+            border-radius: 30px;
+            padding: 14px 40px;
+            font-weight: 700;
+            font-size: 18px;
+            text-decoration: none;
+            margin-top: 18px;
+            box-shadow: 0 8px 25px rgba(245,130,32,0.25);
+        }
+
+            .dl-btn:hover {
+                opacity: 0.9;
+            }
+
+        /* RIGHT COLUMN */
         .right-col {
             flex: 1;
             display: flex;
             align-items: center;
-            justify-content: center;
-            padding: 28px;
+            justify-content: flex-end;
         }
 
-        /* Logo */
-        .ns-logo {
-            width: 120px;
-            height: auto;
-            object-fit: contain;
-        }
-
-        /* Headings & text */
-        .brand-title {
-            margin-top: 6px;
-            font-size: 44px;
-            line-height: 1;
-            color: #00A4A4;
-            font-weight: 700;
-        }
-
-            .brand-title .accent {
-                color: #F58220;
-            }
-
-        .tagline {
-            margin-top: 8px;
-            color: #333;
-            font-size: 16px;
-            font-weight: 500;
-        }
-
-        /* QR block */
-        .qr-wrap {
-            width: 220px;
-            height: 220px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(255,255,255,0.95);
-            border-radius: 6px;
-            padding: 12px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-        }
-
-            .qr-wrap img {
-                max-width: 100%;
-                max-height: 100%;
-                display: block;
-            }
-
-        .small-note {
-            font-size: 12px;
-            color: rgba(0,0,0,0.6);
-            margin-top: 12px;
-            max-width: 320px;
-            font-weight:bold;
-        }
-
-        /* Download button */
-        .dl-btn {
-            background: #f58220;
-            color: white;
-            border-radius: 30px;
-            padding: 12px 28px;
-            font-weight: 600;
-            text-decoration: none;
-            box-shadow: 0 6px 18px rgba(245,130,32,0.18);
-            transition: background 0.2s ease;
-        }
-
-            .dl-btn:hover {
-                background: #e46e0d;
-            }
-
-        /* Right product image container */
         .product-image {
-            max-width: 620px;
-            width: 100%;
-            height: auto;
+            width: 120%;
+            max-width: 1100px;
             object-fit: contain;
-            transform: translateX(8px);
         }
 
-        /* Responsive rules */
-        @@media (max-width: 900px) {
+        /* MOBILE RESPONSIVE */
+        @@media (max-width: 1000px) {
             .hero-panel
 
         {
+            width: calc(100% - 30px);
+            height: calc(100% - 30px);
+        }
+
+        .content {
             flex-direction: column;
-            width: calc(100% - 40px);
-            height: auto;
-            margin: 20px auto;
             padding: 20px;
-            border-radius: 16px;
+            gap: 20px;
+            justify-content: flex-start;
         }
 
         .left-col {
-            align-items: center;
-            text-align: center;
-            padding: 18px;
-        }
-
-        .qr-section {
-            align-items: center;
+            order: 1;
+            width: 100%;
         }
 
         .right-col {
-            padding: 12px;
-        }
-
-        .ns-logo {
-            width: 90px;
-        }
-
-        .brand-title {
-            font-size: 34px;
-        }
-
-        .qr-wrap {
-            width: 200px;
-            height: 200px;
+            order: 2;
+            width: 100%;
+            justify-content: center;
         }
 
         .product-image {
-            max-width: 420px;
-            margin-top: 18px;
+            width: 360px;
         }
 
         }
 
         @@media (max-width: 420px) {
-            .brand-title
+            .ns-logo
 
         {
-            font-size: 28px;
+            width: 140px;
         }
 
-        .qr-wrap {
-            width: 170px;
-            height: 170px;
+        .product-image {
+            width: 260px;
         }
 
         .dl-btn {
-            padding: 10px 22px;
-            font-size: 15px;
+            font-size: 16px;
+            padding: 12px 26px;
         }
 
         }
-
-        .changessssss{}
     </style>
 </head>
+
 <body>
+    <main style="height:100vh; width:100vw; display:flex; align-items:center; justify-content:center;">
+        <section class="hero-panel">
+            <div class="backdrop"></div>
+
+            <div class="content">
+
+                <!-- LEFT -->
+                <div class="left-col">
+                    <img src="/images/NS_logo.png"
+                         alt="BGC Bus NextStop logo"
+                         class="ns-logo" />
+
+                    <p class="tagline">Your smart companion for BGC Bus commuting.</p>
+
+                    <a class="dl-btn" href="@Url.Action("DownloadApk", "Home")" role="button" aria-label="Download NextStop">
+                        Download APK
+                    </a>
+                </div>
+
+                <!-- RIGHT -->
+                <div class="right-col">
+                    <img src="/images/ProductImage.png"
+                         alt="BGC Bus App UI Preview"
+                         class="product-image" />
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+@* <body>
     <main class="h-100 d-flex align-items-center justify-content-center">
         <section class="hero-panel" role="region" aria-label="NextStop download panel">
 
@@ -258,5 +236,5 @@
 
     <!-- Bootstrap JS (kept for Bootstrap layout support) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+</body> *@
 </html>

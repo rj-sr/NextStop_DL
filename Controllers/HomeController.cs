@@ -21,7 +21,7 @@ namespace NextStop_Website.Controllers
         {
             // Build the full physical path to the APK file
             string filePath = Path.Combine(_env.WebRootPath, "Files", "com.bgcbus.nextstop.apk");
-            string fileName = "com.bgcbus.nextstop.apk";
+            string fileName = "NextStop.apk";
 
             if (!System.IO.File.Exists(filePath))
             {
